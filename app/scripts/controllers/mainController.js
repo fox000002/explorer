@@ -75,6 +75,7 @@ angular.module('ethExplorer')
 
         function updateStats() {
           $scope.blockNum = web3.eth.blockNumber; // now that was easy
+          console.log($scope.blockNum);
 
           if($scope.blockNum!==undefined){
 
@@ -125,19 +126,19 @@ angular.module('ethExplorer')
                   if(blockBefore!==undefined){
                   $scope.blocktimeAverage1 = ((blockNewest.timestamp - blockPast.timestamp)/range).toFixed(2);
                   }
-                  $scope.range2=1000;
+                  $scope.range2=100;
                   range = $scope.range2;
                   var blockPast = web3.eth.getBlock($scope.blockNum - range);
                   if(blockBefore!==undefined){
                   $scope.blocktimeAverage2 = ((blockNewest.timestamp - blockPast.timestamp)/range).toFixed(2);
                   }
-                  $scope.range3=10000;
+                  $scope.range3=100;
                   range = $scope.range3;
                   var blockPast = web3.eth.getBlock($scope.blockNum - range);
                   if(blockBefore!==undefined){
                   $scope.blocktimeAverage3 = ((blockNewest.timestamp - blockPast.timestamp)/range).toFixed(2);
                   }
-                  $scope.range4=100000;
+                  $scope.range4=10;
                   range = $scope.range4;
                   var blockPast = web3.eth.getBlock($scope.blockNum - range);
                   if(blockBefore!==undefined){
@@ -198,8 +199,17 @@ angular.module('ethExplorer')
             var currentTXnumber = web3.eth.blockNumber;
             $scope.txNumber = currentTXnumber;
             $scope.recenttransactions = [];
-            for (var i=0; i < 10 && currentTXnumber - i >= 0; i++) {
-              $scope.recenttransactions.push(web3.eth.getTransactionFromBlock(currentTXnumber - i));
+            for (var i=0; i < 50 && currentTXnumber - i >= 0; i++) {
+              var n = web3.eth.getBlockTransactionCount(currentTXnumber - i);
+              if (n > 0) {
+                for (var j=0; j<n; j++) {            
+                  var tx = web3.eth.getTransactionFromBlock(currentTXnumber - i, j);
+                  if (tx) {
+                    console.log(tx.hash);
+                    $scope.recenttransactions.push(tx);
+                  }
+                }
+              }
             }
         }
 
@@ -207,7 +217,7 @@ angular.module('ethExplorer')
             var currentBlockNumber = web3.eth.blockNumber;
             $scope.blockNumber = currentBlockNumber;
             $scope.blocks = [];
-            for (var i=0; i < 10 && currentBlockNumber - i >= 0; i++) {
+            for (var i=0; i < 50 && currentBlockNumber - i >= 0; i++) {
               $scope.blocks.push(web3.eth.getBlock(currentBlockNumber - i));
             }
         }
