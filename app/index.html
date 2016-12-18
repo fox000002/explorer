@@ -11,9 +11,9 @@
   <meta name="description" content="An Ethereum (ETH) Block Explorer">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
-  <link rel="stylesheet" href="http://s.mlcdn.co/animate.css">
-  <script src="https://use.fontawesome.com/9376283190.js"></script>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!--  <link rel="stylesheet" href="http://s.mlcdn.co/animate.css"> -->
+  <!--<script src="https://use.fontawesome.com/9376283190.js"></script> -->
   <script src="bower_components/web3/dist/web3.min.js"></script>
 </head>
 <body>
@@ -49,12 +49,12 @@
   <div ng-view></div>
 
 <!--Libs-->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="scripts/angular.min.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!--Core-->
   <script src="app.js"></script>
 
@@ -96,8 +96,7 @@ function shapeshift_click(a,e) {
 
 <div class="footer styledfoot">
     <footer><br />
-            © ETHER EXPLORER 2016 | <a href="http://github.com/carsenk/explorer">Fork me on GitHub</a><br />
-            Helpful Links: ethereum.org | gdax.com | coinbase.com
+            Ethereum Transaction Explorer
             <br />
     </footer>
 </div>
