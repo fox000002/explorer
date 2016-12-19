@@ -55,7 +55,7 @@ angular.module('ethExplorer')
 	                        if(blockBefore!==undefined){
 			                    $scope.blocktime = blockNewest.timestamp - blockBefore.timestamp;
 	                        }
-	                        $scope.range1=100;
+/*	                        $scope.range1=100;
 	                        range = $scope.range1;
 	                        var blockPast = web3.eth.getBlock($scope.blockNum - range);
 	                        if(blockBefore!==undefined){
@@ -85,7 +85,7 @@ angular.module('ethExplorer')
 	                        if(blockBefore!==undefined){
 			                    $scope.blocktimeAverageAll = ((blockNewest.timestamp - blockPast.timestamp)/range).toFixed(2);
 	                        }
-
+*/
 
 	                        //fastAnswers($scope);
 	                        //$scope=BlockExplorerConstants($scope);

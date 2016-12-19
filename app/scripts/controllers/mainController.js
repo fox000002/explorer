@@ -4,22 +4,22 @@ angular.module('ethExplorer')
     .controller('mainCtrl', function ($rootScope, $scope, $location) {
 
         // Display & update block list
-        getETHRates();
+        //getETHRates();
         updateBlockList();
         updateTXList();
         updateStats();
-        getHashrate();
+        //getHashrate();
 
-        web3.eth.filter("latest", function(error, result){
-          if (!error) {
-            getETHRates();
-            updateBlockList();
-            updateTXList();
-            updateStats();
-            getHashrate();
-            $scope.$apply();
-          }
-        });
+        //web3.eth.filter("latest", function(error, result){
+        //  if (!error) {
+        //    //getETHRates();
+        //    updateBlockList();
+        //    updateTXList();
+        //    updateStats();
+        //    //getHashrate();
+        //    $scope.$apply();
+        // }
+        //});
 
         $scope.processRequest= function(){
             var requestStr = $scope.ethRequest;
@@ -75,7 +75,7 @@ angular.module('ethExplorer')
 
         function updateStats() {
           $scope.blockNum = web3.eth.blockNumber; // now that was easy
-          console.log($scope.blockNum);
+          //console.log($scope.blockNum);
 
           if($scope.blockNum!==undefined){
 
@@ -115,7 +115,7 @@ angular.module('ethExplorer')
 
                   // Average Block Times:
                   // TODO: make fully async, put below into 'fastInfosCtrl'
-
+/*
                   var blockBefore = web3.eth.getBlock($scope.blockNum - 1);
                   if(blockBefore!==undefined){
                   $scope.blocktime = blockNewest.timestamp - blockBefore.timestamp;
@@ -150,7 +150,7 @@ angular.module('ethExplorer')
                   if(blockBefore!==undefined){
                   $scope.blocktimeAverageAll = ((blockNewest.timestamp - blockPast.timestamp)/range).toFixed(2);
                   }
-
+*/
                   //fastAnswers($scope);
                   //$scope=BlockExplorerConstants($scope);
 
@@ -169,15 +169,15 @@ angular.module('ethExplorer')
           catch(err) {$scope.versionWhisper = err.message; }
 }
 
-
+/*
         function getHashrate()	{
           $.getJSON("https://etherchain.org/api/miningEstimator", function(json) {
             var hr = json.data[0].hashRate;
             $scope.hashrate = hr;
        	});
-      }
+    }*/
 
-        function getETHRates() {
+/*        function getETHRates() {
           $.getJSON("https://coinmarketcap-nexuist.rhcloud.com/api/eth/price", function(json) {
             var price = json.usd;
             $scope.ethprice = "$" + price.toFixed(2);
@@ -194,7 +194,7 @@ angular.module('ethExplorer')
             $scope.ethmarketcap = cap;
           });
         }
-
+*/
         function updateTXList() {
             var currentTXnumber = web3.eth.blockNumber;
             $scope.txNumber = currentTXnumber;
@@ -202,10 +202,10 @@ angular.module('ethExplorer')
             for (var i=0; i < 50 && currentTXnumber - i >= 0; i++) {
               var n = web3.eth.getBlockTransactionCount(currentTXnumber - i);
               if (n > 0) {
-                for (var j=0; j<n; j++) {            
+                for (var j=0; j<n; j++) {
                   var tx = web3.eth.getTransactionFromBlock(currentTXnumber - i, j);
                   if (tx) {
-                    console.log(tx.hash);
+                    //console.log(tx.hash);
                     $scope.recenttransactions.push(tx);
                   }
                 }
